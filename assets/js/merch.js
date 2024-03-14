@@ -1,13 +1,14 @@
 const options = {
 	method: 'GET',
 	headers: {
-		'X-RapidAPI-Key': '1b9acf44bamshbe2aae19de3526fp183346jsndc43cfaa106c',
+		'X-RapidAPI-Key': '1b9acf44bamshbe2aae19de3526fp183346jsndc43cfaa106c',  
 		'X-RapidAPI-Host': 'amazon24.p.rapidapi.com'
 	}
 };
 
 var amazURL =
-  "https://amazon24.p.rapidapi.com/api/product?categoryID=aps&keyword=ANIME&country=US&page=1";
+  "https://amazon24.p.rapidapi.com/api/product?categoryID=aps&keyword=ANIME&country=US&page=1"
+
 const merchLength = 3;
 
 
