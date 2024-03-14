@@ -6,7 +6,6 @@ That sparked an idea for us, why not create a webapp that could assist the user 
 
 Together we learned how to:
 
-- Use the power of friendship; to work seamlessly with a team on GitHub.
 - Apply two server-side API's and store it's data client-side.
 - Use stored data to create a favorites page.
 - Create a modal and use our stored data within it.
@@ -14,7 +13,7 @@ Together we learned how to:
 
 ## Usage
 
-Visit our page: https://thien-le13.github.io/anime-ecommerce-webapp/
+Visit our page:  https://bryanttrinh.github.io/Anime-Ecommerce/
 
 You are able to search for any anime in the search bar, the synopsis as well as products will display when an anime is selected. (Refer to GIF 1.)
 
