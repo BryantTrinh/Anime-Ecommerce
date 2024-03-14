@@ -1,13 +1,21 @@
+var amazURL = 'https://real-time-amazon-data.p.rapidapi.com/search?query=hunter%20x%20hunter&page=1&country=US&sort_by=RELEVANCE&category_id=43';
 const options = {
 	method: 'GET',
 	headers: {
-		'X-RapidAPI-Key': '1b9acf44bamshbe2aae19de3526fp183346jsndc43cfaa106c',  
-		'X-RapidAPI-Host': 'amazon24.p.rapidapi.com'
+		'X-RapidAPI-Key': '1b9acf44bamshbe2aae19de3526fp183346jsndc43cfaa106c',
+		'X-RapidAPI-Host': 'real-time-amazon-data.p.rapidapi.com'
 	}
 };
 
-var amazURL =
-  "https://amazon24.p.rapidapi.com/api/product?categoryID=aps&keyword=ANIME&country=US&page=1"
+try {
+	const response = await fetch(url, options);
+	const result = await response.text();
+	console.log(result);
+} catch (error) {
+	console.error(error);
+}
+
+// category id 43: movies and tv
 
 const merchLength = 3;
 
@@ -24,16 +32,16 @@ async function GetAnimeMerch(animeTitle) {
 	.then(function(data){
 
     for (var i = 0; i < Math.min(data.docs.length, itemLength); i++) {
-      if (!(data.docs[i].app_sale_price != null)) {
+      if (!(data.docs[i].product_price != null)) {
 
         itemLength++;
         continue;
       }
       var item = {
         name: data.docs[i].product_title,
-        image: data.docs[i].product_main_image_url,
-        price: data.docs[i].app_sale_price,
-        prodURL: data.docs[i].product_detail_url
+        image: data.docs[i].product_photo,
+        price: data.docs[i].product_price,
+        prodURL: data.docs[i].product_url
       };
       merchList.push(item);
     }

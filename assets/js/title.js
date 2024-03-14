@@ -5,7 +5,7 @@ var searchButton = document.querySelector("#search-title-btn");
 
 
 function getAnime(animeCriteria) {
-  var animeTitleAPI = "https://api.jikan.moe/v4/anime?q=TITLE&sfw";
+  var animeTitleAPI = "https://api.jikan.moe/v4/anime?q=TITLE";
   var animeTitle = animeCriteria;
   fetch(animeTitleAPI.replace("TITLE", animeTitle))
     .then(function (response) {

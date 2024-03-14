@@ -38,7 +38,7 @@ The user will be able to favorite their search after products have loaded by cli
 ## Credits
 
 - Jikan API (https://rapidapi.com/theapiguy/api/jikan1/)
-- Amazon API (https://rapidapi.com/b2g.corporation/api/amazon24/)
+- Amazon API (https://rapidapi.com/letscrape-6bRBa3QguO5/api/real-time-amazon-data)
 
 ## Project Team
 
@@ -51,5 +51,6 @@ The user will be able to favorite their search after products have loaded by cli
 
 ## Limitations
 
-- Amazon API requires personal keys, each limits to 200 fetches. Solution is swap keys once limit is reached. (Currently, Amazon API is disabled to avoid over usage) 
+- Amazon API requires personal keys, each limits to 100 fetches per month. Solution is swap keys once limit is reached.
+- Jikan API has unlimited requests daily, 60 requests per minute, and 3 requests per second.
 - The favorites button during the search will not be functional until the products from Amazon are fetched.
