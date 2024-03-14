@@ -1,7 +1,11 @@
+require('dotenv').config();
+const amazonKey = process.env.AMAZON_RAPID_API_KEY;
+console.log("Amazon Rapid API Key:", amazonKey);
+
 const options = {
 	method: 'GET',
 	headers: {
-		'X-RapidAPI-Key': '3b71b8fdf1msh9b900877aba2a12p1269bfjsna5a03b76f9a9',  
+		'X-RapidAPI-Key': process.env.AMAZON_RAPID_API_KEY,
 		'X-RapidAPI-Host': 'amazon24.p.rapidapi.com'
 	}
 };
