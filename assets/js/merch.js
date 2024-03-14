@@ -1,16 +1,13 @@
 const options = {
 	method: 'GET',
 	headers: {
-		'X-RapidAPI-Key': 'e19be23d7dmshbc26129271b44d8p15ceacjsnd977437abe92',  
+		'X-RapidAPI-Key': '3b71b8fdf1msh9b900877aba2a12p1269bfjsna5a03b76f9a9',  
 		'X-RapidAPI-Host': 'amazon24.p.rapidapi.com'
 	}
 };
 
 var amazURL =
   "https://amazon24.p.rapidapi.com/api/product?categoryID=aps&keyword=ANIME&country=US&page=1";
-// var amaz =
-//   "https://amazon24.p.rapidapi.com/api/product?categoryID=aps&keyword=Bleach%3A%20Sennen%20Kessen-hen&country=US&page=1";
-
 const merchLength = 3;
 
 
