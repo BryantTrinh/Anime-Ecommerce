@@ -1,6 +1,6 @@
 require('dotenv').config();
 const amazonKey = process.env.AMAZON_RAPID_API_KEY;
-console.log("Amazon Rapid API Key:", amazonKey);
+
 
 const options = {
 	method: 'GET',
