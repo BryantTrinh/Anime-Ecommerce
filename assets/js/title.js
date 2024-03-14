@@ -3,7 +3,7 @@ var searchContainer = document.querySelector("#result-container");
 var searchInputText = document.querySelector("#search-title");
 var searchButton = document.querySelector("#search-title-btn");
 
-// Retrieves anime information based on user search.
+
 function getAnime(animeCriteria) {
   var animeTitleAPI = "https://api.jikan.moe/v4/anime?q=TITLE&sfw";
   var animeTitle = animeCriteria;
@@ -16,7 +16,6 @@ function getAnime(animeCriteria) {
     });
 }
 
-// Takes retrieved information and selects specific data.
 function getSearchData(data) {
   var searchResults = [];
   CleanSearchResults();
@@ -35,7 +34,7 @@ function getSearchData(data) {
   return searchResults;
 }
 
-// Displays all 5 anime results 
+
 function DisplayResults(searchResults) {
   ReceiveSearchResults(searchResults);
   for (var i = 0; i < searchResults.length; i++) {
@@ -60,7 +59,7 @@ function DisplayResults(searchResults) {
     let favoriteIcon = animeNode.querySelector(".fa-solid.fa-star");
     let notFavoriteIcon = animeNode.querySelector(".fa-regular.fa-star");
 
-    // Check if anime is saved and displayed favorite status accordingly 
+
     if (IsAnimeSaved(ScrapeAnimeObject(favoriteBtn)))
     {
       favoriteIcon.classList.remove("collapse");
@@ -68,7 +67,6 @@ function DisplayResults(searchResults) {
       favoriteBtn.querySelector("p").textContent = "Favorited";
     }
 
-    // Toggles favorite button and updates local storage when clicked
     favoriteBtn.addEventListener("click", function (event) {
       toggleFavoriteAnime(event.target, favoriteIcon, notFavoriteIcon);
     });
@@ -77,7 +75,7 @@ function DisplayResults(searchResults) {
   }
 }
 
-// Checks user input and calls fetch function
+
 function searchAnime() {
   var anime = searchInputText.value || '';
   console.log(anime);
@@ -86,7 +84,7 @@ function searchAnime() {
   }
 }
 
-// Searches for anime after title is entered or search button is clicked.
+
 searchButton.addEventListener("click", searchAnime);
 searchInputText.addEventListener("keyup", function(event){
   if (event.key === "Enter") {
@@ -94,7 +92,7 @@ searchInputText.addEventListener("keyup", function(event){
   }
 });
 
-// Toggles the favorite button and adds to or removes from local storage
+
 function toggleFavoriteAnime(favoriteBtn, favoriteIcon, notFavoriteIcon) {
   if (!favoriteBtn.closest(".result-content").dataset.canFav)
     return;
@@ -104,13 +102,13 @@ function toggleFavoriteAnime(favoriteBtn, favoriteIcon, notFavoriteIcon) {
       favoriteIcon.classList.remove("collapse");
       notFavoriteIcon.classList.add("collapse");
       favoriteBtn.querySelector("p").textContent = "Favorited";
-      // Call save function here
+
       SaveAnime(ScrapeAnimeObject(favoriteBtn));
     } else {
       favoriteIcon.classList.add("collapse");
       notFavoriteIcon.classList.remove("collapse");
       favoriteBtn.querySelector("p").textContent = "Favorite";
-      // Call remove function here
+
       RemoveAnime(ScrapeAnimeObject(favoriteBtn));
     }
   } else {
@@ -118,23 +116,22 @@ function toggleFavoriteAnime(favoriteBtn, favoriteIcon, notFavoriteIcon) {
       favoriteIcon.classList.remove("collapse");
       notFavoriteIcon.classList.add("collapse");
       favoriteBtn.parentElement.querySelector("p").textContent = "Favorited";
-      // Call save function here
+
       SaveAnime(ScrapeAnimeObject(favoriteBtn));
     } else {
       favoriteIcon.classList.add("collapse");
       notFavoriteIcon.classList.remove("collapse");
       favoriteBtn.parentElement.querySelector("p").textContent = "Favorite";
-      // Call remove function here
+
       RemoveAnime(ScrapeAnimeObject(favoriteBtn));
     }
   }
 }
 
-// Gets Anime object from HTML elements
 function ScrapeAnimeObject(startPoint) {
   var point = startPoint.closest('.result-content');
 
-  // Create anime object structure
+
   var anime = {
     title: point.querySelector("#anime-title").textContent,
     synopsis: point.querySelector("#anime-synopsis").firstElementChild.textContent,
@@ -143,7 +140,7 @@ function ScrapeAnimeObject(startPoint) {
     products: []
   }
   
-  // Create product object
+
   var products = point.querySelector("#gift-ideas").querySelectorAll(".product-card");
   for (var i = 0; i < products.length ; i++){
     var prod = {
@@ -157,7 +154,6 @@ function ScrapeAnimeObject(startPoint) {
   return anime;
 }
 
- // Checks if an anime is already in local storage and returns a boolean value
 function IsAnimeSaved(anime){
   var favoritedAnime = JSON.parse(localStorage.getItem(favAnime)) || [];
 
@@ -168,7 +164,6 @@ function IsAnimeSaved(anime){
   return false;
 }
 
-// Transition dropdown caret when card expands
 searchSection.addEventListener("click", function(event) {
   if (event.target.id === 'result-header' || event.target.parentNode.id === 'result-header') {
     let caret = event.target.parentNode.querySelector(".fa-caret-down");
@@ -180,7 +175,6 @@ searchSection.addEventListener("click", function(event) {
   }
 });
 
-// Clears display result content
 function CleanSearchResults() {
   var count = searchSection.children.length;
 
@@ -189,10 +183,8 @@ function CleanSearchResults() {
   }
 }
 
-// Clear placeholder html upon page load
 CleanSearchResults();
 
-// Clear search results upon search tab toggle
 document.getElementById('tabs-tab').addEventListener('click', function(event){
   if (event.target.href) {
     CleanSearchResults();

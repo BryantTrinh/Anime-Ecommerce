@@ -12,7 +12,7 @@ const merchLength = 3;
 
 
 async function GetAnimeMerch(animeTitle) {
-  // This function returns a promise, use .this to accept the promised array of merch
+
   var itemLength = merchLength;
   var merchList = [];
 
@@ -24,7 +24,7 @@ async function GetAnimeMerch(animeTitle) {
 
     for (var i = 0; i < Math.min(data.docs.length, itemLength); i++) {
       if (!(data.docs[i].app_sale_price != null)) {
-        // should skip if price is null
+
         itemLength++;
         continue;
       }

@@ -1,18 +1,16 @@
 var favoriteDisplayEl = document.getElementById('favoriteDisplay');
 var favoriteResults = [];
-// Keep copy of favorited aniime to easily add back
+
 var resultsCopy = [];
 
-// Initialize and update page content from local storage
+
 function renderFavorites() {
-  // Get local storage
   favoriteResults = JSON.parse(localStorage.getItem(favAnime)) || [];
   resultsCopy = JSON.parse(localStorage.getItem(favAnime)) || []
 
-  // loop through local storage
+
   let inLocalStorage = true;
   for (let i = 0; i < favoriteResults.length; i++) {
-    // create card for each favorited anime
     let columnEl = document.createElement('div');
     let articleEl = document.createElement('article');
     let cardButton = document.createElement('button');
@@ -24,7 +22,6 @@ function renderFavorites() {
 
     columnEl.setAttribute('class', 'flex my-1 px-1 w-1/2 max-[380px]:w-full max-[380px]:justify-center md:w-1/3 lg:my-4 lg:px-4 lg:w-1/4');
     articleEl.setAttribute('class', 'flex flex-col w-full justify-between overflow-hidden bg-white rounded-lg shadow-lg result-content');
-    // modal toggle
     cardButton.setAttribute('type', 'button');
     cardButton.setAttribute('data-bs-toggle','modal');
     cardButton.setAttribute('data-bs-target', '#animeModal');
@@ -51,9 +48,9 @@ function renderFavorites() {
     favoriteDisplayEl.appendChild(columnEl);
   }
 }
-// }
 
-// Display the correct favorite button by checking if anime is in local storage
+
+
 function renderFavoriteBtn(inLocalStorage) {
   let favoriteBtn = document.createElement('button');
   let favoriteIcon = document.createElement('i');
@@ -73,14 +70,12 @@ function renderFavoriteBtn(inLocalStorage) {
     favoriteIcon.setAttribute('class', 'fa-solid fa-star p-1 collapse');
     favoriteText.textContent = 'Favorite';
   }
-
   favoriteBtn.append(favoriteIcon, unfavoriteIcon, favoriteText);
   return favoriteBtn;
 }
 
-// Render modal content when anime card is clicked
+
 function renderModal(button) {
-  // loop through the favorite anime object array and check if id matches 
   for ( let i = 0; i < favoriteResults.length; i++ ){
     if (button.id === favoriteResults[i].animeId) {
       let productDisplayEl = document.getElementById('related-products');
@@ -94,7 +89,6 @@ function renderModal(button) {
   }
 }
 
-// Create product cards on the modal by passing in a product obj and a dom node
 function renderProductCard(productInfo, parent) {
   parent.innerHTML ='';
 
@@ -123,7 +117,6 @@ function renderProductCard(productInfo, parent) {
   }
 }
 
-// Toggle favorite button and save/remove anime to/from storage
 function toggleFavoriteBtn(favoriteBtn) {
   let favoriteIcon = favoriteBtn.querySelector('.fa-solid.fa-star');
   let notFavoriteIcon = favoriteBtn.querySelector('.fa-regular.fa-star');
@@ -131,23 +124,22 @@ function toggleFavoriteBtn(favoriteBtn) {
   var point = favoriteBtn.closest('.result-content');
 
   if (favoriteIcon.classList.contains('collapse')) {
-    // is favorited 
     favoriteIcon.classList.remove('collapse');
     notFavoriteIcon.classList.add('collapse');
     favoriteBtn.getElementsByTagName('p')[0].innerHTML = 'Favorited';
-    // add add to array function and save to local storage
+
     SaveAnime(GetAnimeById(point.querySelector('.anime-title').dataset.id));
   } else {
-    // unfavorite
+
     favoriteIcon.classList.add('collapse');
     notFavoriteIcon.classList.remove('collapse');
     favoriteBtn.getElementsByTagName('p')[0].innerHTML = 'Favorite';
-    // remove from array and update local storage
+
     removeFromFavoritesArray( point.querySelector('.anime-title').dataset.id);
   }
 }
 
-// Get anime object from favorite animes with anime id
+
 function GetAnimeById(id)
 {
   for (var i = 0; i < resultsCopy.length; i++){
@@ -156,7 +148,7 @@ function GetAnimeById(id)
   }
 }
 
-// Call search funtion if enter is pressed in search input
+
 function checkClicked(event) {
   if (event.target.id === 'favorite-button') {
     toggleFavoriteBtn(event.target)
