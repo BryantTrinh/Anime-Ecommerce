@@ -1,4 +1,6 @@
-var amazURL = 'https://real-time-amazon-data.p.rapidapi.com/search?query=hunter%20x%20hunter&page=1&country=US&sort_by=RELEVANCE&category_id=43';
+var amazURL = 'https://real-time-amazon-data.p.rapidapi.com/search?query=ANIME&page=1&country=US&sort_by=RELEVANCE&category_id=43';
+// id 43 - movies and tv 
+// future dev- add more category id
 const options = {
 	method: 'GET',
 	headers: {
@@ -8,32 +10,24 @@ const options = {
 };
 
 try {
-	const response = await fetch(url, options);
+	const response = await fetch(amazURL, options);
 	const result = await response.text();
 	console.log(result);
 } catch (error) {
 	console.error(error);
 }
-
-// category id 43: movies and tv
-
 const merchLength = 3;
 
-
 async function GetAnimeMerch(animeTitle) {
-
   var itemLength = merchLength;
   var merchList = [];
-
   var encodedTitle = encodeURIComponent(animeTitle + " anime");
 
   const merch = await fetch(amazURL.replace('ANIME', encodedTitle), options)
 	.then(response => response.json())
 	.then(function(data){
-
     for (var i = 0; i < Math.min(data.docs.length, itemLength); i++) {
       if (!(data.docs[i].product_price != null)) {
-
         itemLength++;
         continue;
       }
@@ -47,9 +41,7 @@ async function GetAnimeMerch(animeTitle) {
     }
     return merchList;
   }).catch((err) => console.error(err));
-
   return Promise.resolve(merch);
-
 }
 
 var searchResults = [];
